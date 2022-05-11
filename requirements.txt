@@ -1,0 +1,16 @@
+numpy
+#torch 
+#torchvision
+matplotlib
+jupyterlab
+Pillow
+tqdm
+#kaggle 
+pyyaml
+tensorboard
+pandas
+scikit-learn
+opencv-python
+scikit-image
+Cython 
+mxnet
