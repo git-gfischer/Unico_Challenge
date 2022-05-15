@@ -15,7 +15,7 @@ class Resnet50(ImageClassificationBase):
         #self.resnet50.fc = nn.Linear(in_features, n_classes)
 
         
-        self.resnet50.fc = nn.Sequential(nn.Linear(2048,512),
+        self.resnet50.fc = nn.Sequential(nn.Linear(in_features,512),
                                         nn.ReLU(),
                                         nn.Dropout(0.2),
                                         nn.Linear(512, n_classes))

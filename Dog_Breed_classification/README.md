@@ -7,6 +7,7 @@ Deep Learning application to recognize dogs breeds. <br/>
 # Depedencies
 ```
 pip3 install --upgrade pip
+pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/cu113
 pip3 install -r requirements.txt
 ```
 
@@ -21,7 +22,7 @@ python3 Organize.py --dataset [PATH] --black_img_filter
 In order to train the model, all important parameters can be found at ```config``` folder. To train the model execute the following command line. The trained model weights will be saved at the ```experiments``` folder. The dataset used was provided by the Unico research team. The trained weights will be stored at ```experiments/[EX_NAME]/weights```.
 
 ```
-python3 Train.py --cfg[PATH][OPTIONAL] --logs_path[PATH][OPTINAL] --exp_name[NAME][OPTIONAL]
+python3 Train.py --exp_name [NAME] --cfg [PATH][OPTIONAL] --logs_path [PATH][OPTINAL] 
 ```
 
 # Training Loss and Acc graphs
@@ -49,10 +50,32 @@ To read the generated csv file and calculate the metrics (and spare process time
 # Results
 Here the following models were tested using the 2 different dataset (from the ``` Benchmark.py ``` command):
 
-| Model Name | ACC(%) | Precision(%) | Recall(%) | F1(%) | #Samples | #Support |
-|  :-----------:    |     :---:    |     :---------:      |     :------------:     |     :---------:    | :-----:  | :-----:  |
-| **VGG19_T1_e13_RFW_retina** | 84 | 82/95/77/88 | 98/77/89/73 | 90/85/82/80 | 40599 | 10414/9685/10193/10307 |
-
+| Model Name | ACC(%) | #Samples |
+|  :-----------:    | :-----:  | :-----:  |
+| **resnet18_SGD_001_cte** | 0 | 0 |
+| **resnet18_adam_0001_cte** | 0 | 0 |  
+| **resnet18_ext_SGD_001_cte** | 0 | 0 |  
+| **resnet18_ext_adam_0001_cte** | 0 | 0 |  
+| **resnet18_SGD_001_LR5** | 0 | 0 |  
+| **resnet18_adam_0001_LR5** | 0 | 0 |  
+| **resnet18_ext_SGD_001_LR5** | 0 | 0 |  
+| **resnet18_ext_adam_0001_LR5** | 0 | 0 |
+| **resnet50_SGD_001_cte** | 0 | 0 |
+| **resnet50_adam_0001_cte** | 0 | 0 |  
+| **resnet50_ext_SGD_001_cte** | 0 | 0 |  
+| **resnet50_ext_adam_0001_cte** | 0 | 0 |  
+| **resnet50_SGD_001_LR5** | 0 | 0 |  
+| **resnet50_adam_0001_LR5** | 0 | 0 |  
+| **resnet50_ext_SGD_001_LR5** | 0 | 0 |  
+| **resnet50_ext_adam_0001_LR5** | 0 | 0 |   
+| **EffNetB2_SGD_001_cte** | 0 | 0 |  
+| **EffNetB2_adam_0001_cte** | 0 | 0 |  
+| **EffNetB2_ext_SGD_001_cte** | 0 | 0 |  
+| **EffNetB2_ext_adam_0001_cte** | 0 | 0 |  
+| **EffNetB2_SGD_001_LR5** | 0 | 0 |  
+| **EffNetB2_adam_0001_LR5** | 0 | 0 |  
+| **EffNetB2_ext_SGD_001_LR5** | 0 | 0 |  
+| **EffNetB2_ext_adam_0001_LR5** | 0 | 0 |  
 
 # References
 1. https://www.analyticsvidhya.com/blog/2022/03/dog-breed-classification-using-a-stacked-pre-trained-model/

@@ -5,10 +5,11 @@
 
 #Todos:
 # Retreinar Resnet18,Resnet50, effNet
-# Web application 
-# docker
+# analise dos modelos Benchmark
+# analise unknown
+# docker 
 # Readme
-# YOLO  (Plus)
+# YOLOV3  (Plus)
 # API (Plus)
 
 import os
