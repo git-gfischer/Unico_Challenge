@@ -10,14 +10,14 @@ dataset:
   mean: [0.485, 0.456, 0.406]
   sigma: [0.229, 0.224, 0.225]
 model:
-  base: 'resnet50' #['resnet18','resnet50','effNet']
+  base: 'effNet' #['resnet18','resnet50','effNet']
   #freeze: False
   pretrained: True
   input_size: [224,224]
 scheduler:
-  type: None #[None,linear,exponential]
-  step: 10
-  decay: 0.94
+  type: linear #[None,linear,exponential]
+  step: 5
+  decay: 0.5
 train:
   # batch_size: 256
   batch_size: 16
