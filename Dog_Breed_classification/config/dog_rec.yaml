@@ -3,26 +3,26 @@ log_dir: 'experiments/log'
 device: [0, 1]
 dataset:
   name: 'dogs'
-  root: '/home/fischer/Desktop/Fischer/Projects/Unico_Challenge/Dog_Breed_classification/dogs/train_organized'
+  root: '/home/fischer/Desktop/Fischer/Unico/Unico_Challenge/Dog_Breed_classification/dogs/train_organized'
   # num_workers: 16
   num_workers: 4
   split: False
   mean: [0.485, 0.456, 0.406]
   sigma: [0.229, 0.224, 0.225]
 model:
-  base: 'resnet50' #['resnet18','resnet50','effNet']
+  base: 'resnet18' #['resnet18','resnet50','effNet']
   #freeze: False
   pretrained: True
   input_size: [224,224]
 scheduler:
-  type: None #[None,linear,exponential]
-  step: 10
-  decay: 0.94
+  type: linear #[None,linear,exponential]
+  step: 5
+  decay: 0.5
 train:
   # batch_size: 256
   batch_size: 16
-  optimizer: 'adam' #['adam','SGD', 'rmsprop']
-  lr: 0.001
+  optimizer: 'SGD' #['adam','SGD', 'rmsprop']
+  lr: 0.01
   num_epochs: 20
   loss_fn: 'CrossEntropy'
 val:

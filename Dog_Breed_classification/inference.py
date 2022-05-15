@@ -14,6 +14,23 @@ import torch
 import cv2
 import time 
 
+def web_inferece(img_bin,network,device,classes,th=0.4):
+    # inferece function for web aplication
+
+    #prediction
+    start_time = time.time()
+    out, prob = prediction(network,img_bin,device)
+    prob_list = prob.tolist()[0]
+    end_time = time.time()
+    print(f"elapsed time: {end_time - start_time} seconds")
+    if(float(prob_list[out]) > th): 
+        print(f"Result: {classes[out]} | prob: {prob_list} ")
+        return classes[out], prob_list[out]
+    else: 
+        #print(f"class: {classes[out]}prob: {str(prob_list[out])}")
+        print("Result: Unknown")
+        return "Unknown",prob_list[out]
+#======================================================================
 def main():
     print("Starting inference")
 

@@ -3,9 +3,8 @@
 # Author : Fischer @ Unico
 # Usage : python3 train.py --cfg[PATH][OPTIONAL] --logs_path[PATH][OPTINAL] --exp_name[NAME][OPTIONAL] --multiGPU [OPTIONAL]
 
-#Todos:
+#TODO:
 # Retreinar Resnet18,Resnet50, effNet
-# Web application 
 # docker
 # Readme
 # YOLO  (Plus)
