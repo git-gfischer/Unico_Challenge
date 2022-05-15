@@ -23,7 +23,7 @@ def main():
     parser.add_argument("--model",type=str,default="experiments/exp_1/weights/resnet18_dogs_7.pth", help="input trained model")
     parser.add_argument("--network", choices=['resnet18','resnet50','effNet'], default='resnet50', help="network architecture")
     parser.add_argument("--classes", default='config/labels.txt', help="labels file")
-    parser.add_argument("--th",type=float,default= 0.7, help = "Threshold for model output ")
+    parser.add_argument("--th",type=float,default= 0.4, help = "Threshold for model output ")
     args=parser.parse_args()
     #-------------------------------------------
     #checking args
@@ -61,10 +61,11 @@ def main():
     frame = cv2.imread(args.img)
     out, prob = prediction(network,frame,device)
     prob_list = prob.tolist()[0]
-    if(float(prob_list[out]) > args.th): print(f"Result: {classes[out]} | prob: {prob_list} ")
+    if(float(prob_list[out]) > args.th): print(f"Result: {classes[out]} | prob: {prob_list[out]} ")
     else: 
         #print(f"class: {classes[out]}prob: {str(prob_list[out])}")
         print("Result: Unknown")
+        print(f"Debug: {classes[out]} Prob: {prob_list[out]}")
     end_time = time.time()
     print(f"elapsed time: {end_time - start_time} seconds")
 
