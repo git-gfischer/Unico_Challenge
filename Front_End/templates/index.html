@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Classificador de cachorros</title>
+        <script>
+            const REQUEST_TIMEOUT = 5 * 1000
+            const ADDRESS = "http://localhost:5000"
+
+            const sendFetch = (data, path) => {
+                const controller = new AbortController()
+                const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT)
+
+                const options = {
+                    method: "POST",
+                    body: data,
+                    signal: controller.signal
+                }
+
+                return fetch(`${ADDRESS}${path}`, options)
+                .then(res => {
+                    if(!res.ok) {
+                        res.text().then(resp => console.log("Result:\n", resp))
+                        throw new Error(`The server returned status:\n${res.status}`)
+                    }
+                    return res.json()
+                })
+                .catch(err => console.log("Error fetching data:\n", err))
+                .finally(() => clearTimeout(timeout))
+            }
+
+            const sendImage = async () => {
+                let image = new FormData()
+
+                const rawImage = readFile.files[0]
+
+                image.append("file", rawImage)
+
+                const classification = await sendFetch(image,"/")
+
+                document.getElementById("result").innerText = `result: ${classification.result} prob: ${classification.prob}`
+
+                let reader = new FileReader()
+
+                reader.readAsDataURL(rawImage)
+
+                reader.onloadend = () => document.getElementById("imagem").src = reader.result
+            }
+
+            const sendEnroll = async () => {
+                const path = document.getElementById("path").value
+
+                document.getElementById("result").innerText = "working..."
+
+                const result = await sendFetch(path, "/enroll")
+                document.getElementById("result").innerText = result.result
+            }
+
+            const runMenu = () => {
+                const selection = document.getElementById("menu").value
+
+                if (selection === "cadastrar") {
+                    document.getElementById("readFile").style.visibility = "hidden"
+                    document.getElementById("imagem").style.visibility = "hidden"
+                    document.getElementById("path").style.visibility = "visible"
+                }
+                else {
+                    document.getElementById("readFile").style.visibility = "visible"
+                    document.getElementById("imagem").style.visibility = "visible"
+                    document.getElementById("path").style.visibility = "hidden"
+                }
+            }
+
+            const doWork = () => document.getElementById("menu").value === "enroll" ? sendEnroll() : sendImage()
+        </script>
+    </head>
+    <body>
+        <marquee>
+            Unico Dog Breed Classifier
+        </marquee>
+
+        <center>
+            <h1>
+                Dog Breed Classifier
+            </h1>
+
+            <label for="menu">
+                Choose mode
+            </label>
+
+            <select name="menu" id="menu" onchange="runMenu()">
+                <option value="classify">
+                    classify
+                </option>
+                <option value="enroll">
+                    enroll
+                </option>
+            </select>
+
+            <input id="readFile" name="readFile" type="file" value="select image"/>
+
+            <input name="path" id="path" type="text" placeholder="new label path " style="visibility: hidden;"><br />
+
+            <button id="send-button" onclick="doWork()"> Send! </button>
+
+            <img id="imagem" src="">
+
+            <p id="result">
+                Waiting for image...
+            </p>
+        </center>
+    </body>
+</html>
