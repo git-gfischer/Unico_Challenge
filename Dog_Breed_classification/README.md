@@ -30,8 +30,8 @@ To read the generated csv file and calculate the metrics (and spare process time
 # Results dog breed classification
 Three deep learning architeture were analyzed for this application: efficientNet_B2, resnet18 and resnet50. The architeture were tested using a separated test data from the original dataset, resulting in 12 trained models. All the results are stored at ```benchmark_results``` along with confusion matrices data (resulted from the ``` Benchmark.py ``` command). The model with the best accuracy was chosen to the web application and the following analyses with new label enrollment and unkown detection. 
 
-| Model Name | ACC(%) | #Samples | #Inference_Time(s) |
-|  :-----------:    | :-----:  | :-----:  || :-----:  |
+| Model Name | ACC(%) | #Samples | Inference_Time(s) |
+|  :-----------:    | :-----:  | :-----:  | :-----:  |
 | **resnet18_ext_SGD_001_cte** | 72 | 1079 |  0.0037 |
 | **resnet18_ext_adam_0001_cte** | 75 | 1079 |  0.0039 |
 | **resnet18_ext_SGD_001_LR5** | 78 | 1079 |  0.0038 |
