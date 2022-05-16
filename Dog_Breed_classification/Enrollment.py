@@ -14,8 +14,10 @@ from utils.utils import update_labels_file
 
 def web_enrollment(path,database,labels):
     #check if there is more than one new label
-    paths = path.split()
-    for path in paths: web_enroll_new_label(path,database,labels)
+    paths = path.split(" ")
+    if(len(paths)==1): web_enroll_new_label(path,database,labels)
+    else: 
+        for path in paths: web_enroll_new_label(path,database,labels)
 #================================================
 def web_enroll_new_label(path, database,labels):
     #get new label name from folder`s name
@@ -63,7 +65,6 @@ def main(): # DEBUGGING
 
     #parsing arguments--------------------------
     parser=argparse.ArgumentParser()
-    #parser.add_argument("--new_label", type=str, required=True, help="New label string")
     parser.add_argument("--new_samples",  type=str, required=True, help=" dataset with pictures from new label")
     parser.add_argument("--database",  type=str, required=True, help=" database path")
     args=parser.parse_args()

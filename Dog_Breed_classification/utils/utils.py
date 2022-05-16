@@ -145,28 +145,3 @@ def plot_chart(train, val, num_epochs, metric="Loss",plot=True):
     plt.grid()
     plt.legend()
     if plot: plt.show()
-#======================= Report ======================
-#=====================================================
-def report_header(cfg):
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-
-    path = os.path.join(cfg['report']['path'],cfg['report']['name'])
-    file = open(path, 'a')
-
-    # Timestamp // Path Dataset // Model // Batch Size // Optimizer // Loss Funciton // Scheduler // Learning Rate
-    file.write('Timestamp: ' + timestamp + '\n')
-    file.write('Path Dataset: ' + cfg['dataset']['root'] + '\n')
-    file.write('Model: ' + cfg['model']['base'] + '\n')
-    file.write('Batch Size: ' + str(cfg['test']['batch_size']) + '\n')
-    file.write('Optimizer: ' + cfg['train']['optimizer'] + '\n')
-    file.write('Loss Function: ' + cfg['train']['loss_fn'] + '\n')
-    file.write('Scheduler[type/step/decay]: ' + cfg['scheduler']['type'] + '/' + str(cfg['scheduler']['step']) + '/' + str(cfg['scheduler']['decay']) + '\n')
-    file.write('Learning Rate: ' + str(cfg['train']['lr']) + '\n')
-    file.write('Epochs: ' + str(cfg['train']['num_epochs']) + '\n')
-    file.close()
-
-def report_metrics(cfg, epoch, train_loss, val_loss, lr = ''):
-    path = os.path.join(cfg['report']['path'],cfg['report']['name'])
-    file = open(path, 'a')
-    file.write('Epoch: ' + str(epoch) + '    Train Loss: ' + str(train_loss) + '  Val Loss: ' + str(val_loss) + str(lr) + '\n')
-    file.close()

@@ -14,7 +14,7 @@ import torch
 import cv2
 import time 
 
-def web_inferece(img_bin,network,device,classes,th=0.4):
+def web_inference(img_bin,network,device,classes,th=0.4):
     # inferece function for web aplication
 
     #prediction
@@ -37,20 +37,13 @@ def main(): #DEBUGGING
     #parsing arguments--------------------------
     parser=argparse.ArgumentParser()
     parser.add_argument("--img", type=str, required=True, help="input image to inference")
-    parser.add_argument("--model",type=str,default="experiments/resnet50_adam_0001_LR5/weights/resnet50_dogs_16.pth", help="input trained model")
+    parser.add_argument("--model",type=str,default="experiments/resnet50_ext_SGD_001_LR5/weights/resnet50_dogs_16.pth", help="input trained model")
     parser.add_argument("--network", choices=['resnet18','resnet50','effNet'], default='resnet50', help="network architecture")
     parser.add_argument("--classes", default='config/labels.txt', help="labels file")
     parser.add_argument("--th",type=float,default= 0.4, help = "Threshold for model output ")
     args=parser.parse_args()
-    #-------------------------------------------
-    #checking args
-    if(args.img is not None):
-        print("Inferencing on an image:" + args.img)
-
-    if(args.model is None): 
-        print("Error no model available")
-        return
-    #--------------------------------------------
+    #--------------------------------
+    
     print("Reading model: " + args.model)
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

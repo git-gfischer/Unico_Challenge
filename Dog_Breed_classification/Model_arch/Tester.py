@@ -10,14 +10,10 @@ from utils.inf_func import predict_batch
 from os import listdir,walk
 from os.path import isfile, join
 
-#from sklearn.metrics import cohen_kappa_score
-#from sklearn.metrics import roc_auc_score
-#from sklearn.metrics import confusion_matrix
-
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 import seaborn as sn
-#from resources.plotcm import plot_confusion_matrix
+
 
 from tqdm import tqdm
 import numpy as np
@@ -130,9 +126,6 @@ class Tester(BaseTrainer):
 
         pbar.close()
     
-        #labels_list = np.concatenate(labels_list, axis=0)
-        #scores = np.concatenate(scores, axis=0)
-
         print("Saving CSV...")
         self.save_csv(filenames_vec, labels_list, scores, time_vec)
 

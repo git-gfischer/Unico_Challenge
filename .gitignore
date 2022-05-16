@@ -1,8 +1,8 @@
-Dog_Breed_classification/config
 Dog_Breed_classification/Dataset_tools/__pycache__
 Dog_Breed_classification/utils/__pycache__
 Dog_Breed_classification/__pycache__
 Dog_Breed_classification/Model_arch/__pycache__
 dogs_dataset/train_organized
 dogs_dataset/recognition
+Front_End/experiments
 .venv

@@ -16,14 +16,14 @@ model:
   input_size: [224,224]
 scheduler:
   type: linear #[None,linear,exponential]
-  step: 5
+  step: 3
   decay: 0.5
 train:
   # batch_size: 256
   batch_size: 16
   optimizer: 'adam' #['adam','SGD', 'rmsprop']
   lr: 0.001
-  num_epochs: 10
+  num_epochs: 5
   loss_fn: 'CrossEntropy'
 val:
   # batch_size: 256

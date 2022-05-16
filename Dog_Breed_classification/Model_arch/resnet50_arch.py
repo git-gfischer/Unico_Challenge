@@ -12,7 +12,7 @@ class Resnet50(ImageClassificationBase):
         for param in self.resnet50.parameters(): param.requires_grad = False
 
         in_features = self.resnet50.fc.in_features
-        self.resnet50.fc = nn.Linear(in_features, n_classes)
+        #self.resnet50.fc = nn.Linear(in_features, n_classes)
 
         self.resnet50.fc = nn.Sequential(nn.Linear(in_features,512),  #2048
                                         nn.ReLU(),

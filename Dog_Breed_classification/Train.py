@@ -3,18 +3,6 @@
 # Author : Fischer @ Unico
 # Usage : python3 train.py --cfg[PATH][OPTIONAL] --logs_path[PATH][OPTINAL] --exp_name[NAME][OPTIONAL] --multiGPU [OPTIONAL]
 
-#TODO:
-# Treina modelo com 120 classes
-# treinar modelo 20 novas classes
-# analise do modelo 20
-# analise do model 120
-# analise unknown
-# Add retrain model on web applcation
-# Readme
-# docker (PLUS)
-# YOLOV3  (Plus)
-# Retreinar Resnet18,Resnet50, effNet que deram errado (PLUS)
-
 import os
 import numpy as np
 import matplotlib
@@ -79,8 +67,10 @@ def web_retrain_model(cfg):
     print("Ok"+ '\n')
 
 
+    
     logs_full_path = os.path.join(logs_path, exp_name)
-    if not os.path.exists(logs_full_path): os.makedirs(logs_full_path)
+    if (os.path.isdir(logs_full_path)): os.remove(logs_full_path)  # remove last model
+    if not os.path.exists(logs_full_path): os.makedirs(logs_full_path) # create new diretory
     report_path = os.path.join(logs_path, exp_name, "report")
     if not os.path.exists(report_path): os.makedirs(report_path)
 
@@ -111,6 +101,12 @@ def web_retrain_model(cfg):
     print("Finish Training")
     writer.close()
 
+    #get new_model path 
+    new_weights_path = os.path.join(logs_full_path,"weights")
+    models = os.listdir(new_weights_path)
+    new_model = models[-1]
+    new_model_path = os.path.join(new_weights_path,new_model)
+    return new_model_path
 #================================================================================
 def main():# DEBUGGING
     print("Starting Training")
