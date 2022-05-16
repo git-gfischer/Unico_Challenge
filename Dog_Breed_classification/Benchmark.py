@@ -14,6 +14,7 @@ from Dataset_tools.preprocessing import test_data
 from utils.DeviceDataLoader import DeviceDataLoader
 from Model_arch.Tester import Tester
 from utils.eval import metrics_csv
+import os
 
 
 def main():
@@ -61,7 +62,8 @@ def main():
         print('Using {} device'.format(device))
 
         #number of classes in the dataset
-        N_classes = get_classes(cfg)
+        #N_classes = get_classes(cfg)
+        N_classes = len(os.listdir(args.dataset))
         print("Number of classes: " + str(N_classes))
         
         #load model architeture

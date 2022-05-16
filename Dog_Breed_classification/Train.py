@@ -4,13 +4,12 @@
 # Usage : python3 train.py --cfg[PATH][OPTIONAL] --logs_path[PATH][OPTINAL] --exp_name[NAME][OPTIONAL] --multiGPU [OPTIONAL]
 
 #TODO:
-# Retreinar Resnet18,Resnet50, effNet
-# analise dos modelos Benchmark
 # analise unknown
-# docker 
+# Add enroll no web application
 # Readme
+# docker (PLUS)
 # YOLOV3  (Plus)
-# API (Plus)
+# Retreinar Resnet18,Resnet50, effNet que deram errado (PLUS)
 
 import os
 import numpy as np

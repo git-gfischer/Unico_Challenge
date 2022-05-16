@@ -7,6 +7,7 @@ from Model_arch.resnet50_arch import Resnet50
 from utils.utils import to_device
 from utils.inf_func import load_model, load_classes
 from inference import web_inferece
+from Enrollment import web_enrollment
 
 
 from flask import Flask
@@ -20,7 +21,9 @@ import torch
 
 app = Flask(__name__)
 
-model = "../Dog_Breed_classification/experiments/resnet50_SGD_001_LR5/weights/resnet50_dogs_19.pth"
+#model = "../Dog_Breed_classification/experiments/resnet50_adam_0001_LR5/weights/resnet50_dogs_15.pth"
+model = "../Dog_Breed_classification/experiments/resnet50_ext_SGD_001_LR5/weights/resnet50_dogs_16.pth"
+database = "../Dog_Breed_classification/database/train_organized"
 classes_file = "../Dog_Breed_classification/config/labels.txt"
 
 classes = load_classes(classes_file)
