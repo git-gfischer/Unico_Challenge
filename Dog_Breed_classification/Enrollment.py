@@ -12,7 +12,12 @@ import random
 from sklearn.model_selection import train_test_split
 from utils.utils import update_labels_file
 
-def web_enroll(path, database):
+def web_enrollment(path,database):
+    #check if there is more than one new label
+    paths = path.split()
+    for path in paths: web_enroll_new_label(path,database)
+#================================================
+def web_enroll_new_label(path, database):
     #get new label name from folder`s name
     new_label = os.path.basename(path)
 
@@ -49,11 +54,11 @@ def web_enroll(path, database):
         update_labels_file(database)
         return "new label enrolled"
 
-    print("done")
-    print(f"new label: {new_label} was enrolled successfully")
-    print("The model must be retrained after all new labels are retrained")
+   # print("done")
+   # print(f"new label: {new_label} was enrolled successfully")
+   # print("The model must be retrained after all new labels are retrained")
 #=============================================================
-def main():
+def main(): # DEBUGGING
     print("Start enrollment...")
 
     #parsing arguments--------------------------

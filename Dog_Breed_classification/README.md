@@ -14,7 +14,7 @@ python3 graphs.py --report [PATH]
 # Inference
 To inference the model on a single image, execute the following command line
 ```
-python3 inference.py --img[PATH] --model[PATH]
+python3 inference.py --img[PATH] --model[PATH][OPTIONAL]
 ```
 
 # Benchmark

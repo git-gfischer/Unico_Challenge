@@ -31,13 +31,13 @@ def web_inferece(img_bin,network,device,classes,th=0.4):
         print("Result: Unknown")
         return "Unknown",prob_list[out]
 #======================================================================
-def main():
+def main(): #DEBUGGING
     print("Starting inference")
 
     #parsing arguments--------------------------
     parser=argparse.ArgumentParser()
     parser.add_argument("--img", type=str, required=True, help="input image to inference")
-    parser.add_argument("--model",type=str,default="experiments/exp_1/weights/resnet18_dogs_7.pth", help="input trained model")
+    parser.add_argument("--model",type=str,default="experiments/resnet50_adam_0001_LR5/weights/resnet50_dogs_16.pth", help="input trained model")
     parser.add_argument("--network", choices=['resnet18','resnet50','effNet'], default='resnet50', help="network architecture")
     parser.add_argument("--classes", default='config/labels.txt', help="labels file")
     parser.add_argument("--th",type=float,default= 0.4, help = "Threshold for model output ")
