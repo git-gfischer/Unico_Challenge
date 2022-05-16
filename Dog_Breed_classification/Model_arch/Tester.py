@@ -89,6 +89,17 @@ class Tester(BaseTrainer):
         save_path = os.path.join(self.csv_path, png_name)
         plt.savefig(save_path)
 #==============================================
+    def save_confusion_matrix(self,labels_list,scores):
+        print("Saving confusion matrix")
+        cf_matrix = confusion_matrix(torch.as_tensor(labels_list), torch.as_tensor(scores))
+        df_cm = pd.DataFrame(cf_matrix/np.sum(cf_matrix) *10, index = [i for i in self.labels],
+                    columns = [i for i in self.labels])
+
+        pkl_name = self.csv_name.replace(".csv",".pkl")
+        save_path = os.path.join(self.csv_path, pkl_name)
+        df_cm.to_pickle(save_path) #save confusion matrix in pickel format
+        print(f"confusion matrix: {save_path} saved")
+#==============================================
     def test(self,cm_flag=False):
         filenames_vec = []
         labels_list = []
@@ -126,7 +137,9 @@ class Tester(BaseTrainer):
         self.save_csv(filenames_vec, labels_list, scores, time_vec)
 
         if(cm_flag): # confusion matrix flag
+            self.save_confusion_matrix(labels_list,scores)
             self.plot_confusion_matrix(labels_list,scores)
+            
     
         print(classification_report(labels_list, scores, target_names=self.labels))
         print("Inference time: {:.4f} seconds \n".format(inference_mean/len(self.testloader)))

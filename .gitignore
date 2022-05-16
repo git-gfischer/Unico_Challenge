@@ -1,4 +1,8 @@
 Dog_Breed_classification/dogs
 Dog_Breed_classification/experiments
 Dog_Breed_classification/config
+Dog_Breed_classification/Dataset_tools/__pycache__
+Dog_Breed_classification/utils/__pycache__
+Dog_Breed_classification/__pycache__
+Dog_Breed_classification/Model_arch/__pycache__
 .venv

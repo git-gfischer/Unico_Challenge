@@ -12,6 +12,47 @@ import random
 from sklearn.model_selection import train_test_split
 from utils.utils import update_labels_file
 
+def web_enroll(path, database):
+    #get new label name from folder`s name
+    new_label = os.path.basename(path)
+
+    #check for existing label name
+    if(new_label in os.listdir(database)):
+        error = "Error: label name already exists"
+        return error
+    else:
+
+        #create new label folder
+        #new_label_path = os.path.join(args.database,args.new_label)
+        new_label_train =os.path.join(database,'train',new_label)
+        new_label_val = os.path.join(database,'test',new_label)
+        os.mkdir(new_label_train)
+        os.mkdir(new_label_val)
+
+        #split the new samples in training and validation 
+        new_samples_path = os.listdir(path)
+        random.shuffle(new_samples_path)
+        training_dataset ,test_dataset= train_test_split(new_samples_path,test_size=0.2)
+        
+        #copy files to database
+        for a in training_dataset:
+            new_train_path = os.path.join(new_label_train,a)
+            old_train_path = os.path.join(path,a)
+            shutil.copy(old_train_path,new_train_path)
+
+        for b in test_dataset:     
+            new_val_path = os.path.join(new_label_val,b)
+            old_val_path = os.path.join(path,b)
+            shutil.copy(old_val_path,new_val_path)
+        
+        #update labels file
+        update_labels_file(database)
+        return "new label enrolled"
+
+    print("done")
+    print(f"new label: {new_label} was enrolled successfully")
+    print("The model must be retrained after all new labels are retrained")
+#=============================================================
 def main():
     print("Start enrollment...")
 
