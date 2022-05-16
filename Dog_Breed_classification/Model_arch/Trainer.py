@@ -9,7 +9,7 @@ import time
 import torch
 from tqdm import tqdm
 from utils.metrics import AvgMeter
-from utils.utils import to_device, report_metrics
+from utils.utils import to_device
 from utils.eval import calc_accuracy
 
 from torch.utils.tensorboard import SummaryWriter
