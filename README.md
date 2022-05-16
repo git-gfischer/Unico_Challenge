@@ -4,7 +4,10 @@
 
 Deep Learning application to recognize dogs breeds. <br/>
 
-<img src="./Repo_images/front_img.jpeg" width="224" class="center">
+<p align="center">
+  <img src="./Repo_images/front_img.jpeg" width = "224" />
+</p>
+
 
 # Depedencies
 ```
@@ -24,13 +27,13 @@ python3 Organize.py --dataset [PATH] --black_img_filter
 To download the already preprocessed dataset run the following commad at the root of this repository. this might take a little while to finish.
 
 ```
-    gdown --folder https://drive.google.com/drive/u/0/folders/1WEAnqEMmITJAkR4kX3j9zWqcdfpr8na_
+gdown --folder https://drive.google.com/drive/u/0/folders/1WEAnqEMmITJAkR4kX3j9zWqcdfpr8na_
 ```
 
 # Start Web Application
 In order to access the web application interface run the following command. Then, go in your favorite browser to ```localhost:5000```
 ```
-    cd Front_End
-    python3 parser_app.py
+cd Front_End
+python3 parser_app.py
 ```
 
