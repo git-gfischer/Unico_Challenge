@@ -4,6 +4,8 @@
 
 Deep Learning application to recognize dogs breeds. <br/>
 
+![plot](./Repo_images/front_img.jpeg)
+
 # Depedencies
 ```
 pip3 install --upgrade pip
