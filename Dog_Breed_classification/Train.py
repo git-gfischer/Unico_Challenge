@@ -4,8 +4,12 @@
 # Usage : python3 train.py --cfg[PATH][OPTIONAL] --logs_path[PATH][OPTINAL] --exp_name[NAME][OPTIONAL] --multiGPU [OPTIONAL]
 
 #TODO:
+# Treina modelo com 120 classes
+# treinar modelo 20 novas classes
+# analise do modelo 20
+# analise do model 120
 # analise unknown
-# Add enroll no web application
+# Add retrain model on web applcation
 # Readme
 # docker (PLUS)
 # YOLOV3  (Plus)
@@ -25,7 +29,90 @@ from utils.Report_Class import Report_class
 
 from torch.utils.tensorboard import SummaryWriter
 
-def main():
+def web_retrain_model(cfg):
+    exp_name = "new_model"
+    multiGPU = False
+    logs_path = "experiments"
+
+    #Read config file
+    print(f"Reading config file {cfg} ....")
+    cfg=read_cfg(cfg_file=cfg)
+    print ("Ok" + '\n')
+
+    #config GPU device
+    device = get_device(cfg)
+    print('Using {} device'.format(device) + '\n')
+
+    #number of classes in the dataset
+    N_classes = get_classes(cfg)
+    print("Number of classes: " + str(N_classes))
+
+    #config network
+    print("Load Network...")
+    network=get_model(cfg,N_classes)
+    print("Ok " + "model:" + cfg['model']['base'] + '\n')
+   
+    # config optimizer
+    print("Load Optimizer...")
+    optimizer=get_optimizer(cfg,network)
+    print("Ok " + "optimizer:" + cfg['train']['optimizer']+ '\n')
+
+    #config learning rate scheduler
+    print("Scheduler Learning rate")
+    lr_scheduler = get_scheduler(cfg,optimizer)
+    print("Ok " + "scheduler: " + cfg['scheduler']['type']+ '\n')
+
+    #config loss function
+    print("Load Loss Function")
+    loss_fn = get_loss_fn(cfg)
+    print("Ok " + "loss function:" + cfg['train']['loss_fn']+ '\n')
+    
+    #Split data in training and validation
+    print("Load training and Validation data...")
+    trainloader,valloader=training_val_data(cfg)
+
+    #load dataloader into GPU
+    train_dl = DeviceDataLoader(trainloader, device)
+    val_dl = DeviceDataLoader(valloader, device)
+    print(f"Training size: {len(trainloader)} batches")
+    print(f"Validation size: {len(valloader)} batches")
+    print("Ok"+ '\n')
+
+
+    logs_full_path = os.path.join(logs_path, exp_name)
+    if not os.path.exists(logs_full_path): os.makedirs(logs_full_path)
+    report_path = os.path.join(logs_path, exp_name, "report")
+    if not os.path.exists(report_path): os.makedirs(report_path)
+
+    print("Starting TensorBoard.....")
+    writer = SummaryWriter(f'{logs_full_path}/Tensorboard_logs')
+    print("Ok"+ f" Path: {logs_full_path}/Tensorboard_logs" +'\n')
+
+    #training report 
+    print("Creating training report.....")
+    report = Report_class(cfg,report_path)
+    print ("Ok")
+
+    trainer= Trainer(cfg=cfg,
+                    network=network,
+                    optimizer=optimizer,
+                    loss_fn =loss_fn,
+                    device=device,
+                    trainloader=train_dl,
+                    valloader=val_dl,
+                    lr_scheduler= lr_scheduler,
+                    logs_path=logs_full_path,
+                    multiGPU=multiGPU,
+                    report = report,
+                    writer=writer)
+
+    print("Starting training...")
+    trainer.train()
+    print("Finish Training")
+    writer.close()
+
+#================================================================================
+def main():# DEBUGGING
     print("Starting Training")
 
     print("Pytorch Version:" + torch.__version__)

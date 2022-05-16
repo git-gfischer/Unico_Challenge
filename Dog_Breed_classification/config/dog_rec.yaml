@@ -23,7 +23,7 @@ train:
   batch_size: 16
   optimizer: 'adam' #['adam','SGD', 'rmsprop']
   lr: 0.001
-  num_epochs: 20
+  num_epochs: 10
   loss_fn: 'CrossEntropy'
 val:
   # batch_size: 256

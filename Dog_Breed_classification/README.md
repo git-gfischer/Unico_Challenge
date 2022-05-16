@@ -68,3 +68,4 @@ Three deep learning architeture were analyzed for this application: efficientNet
 1. https://www.analyticsvidhya.com/blog/2022/03/dog-breed-classification-using-a-stacked-pre-trained-model/
 2. https://www.kaggle.com/code/masrur007/resnet50-and-cnn-from-scratch-dog-breed-classify
 3. https://towardsdatascience.com/how-to-train-an-image-classifier-in-pytorch-and-use-it-to-perform-basic-inference-on-single-images-99465a1e9bf5
+4. https://machinelearningmastery.com/update-neural-network-models-with-more-data/

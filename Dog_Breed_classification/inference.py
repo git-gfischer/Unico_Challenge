@@ -24,7 +24,7 @@ def web_inferece(img_bin,network,device,classes,th=0.4):
     end_time = time.time()
     print(f"elapsed time: {end_time - start_time} seconds")
     if(float(prob_list[out]) > th): 
-        print(f"Result: {classes[out]} | prob: {prob_list} ")
+        print(f"Result: {classes[out]} | prob: {prob_list[out]} ")
         return classes[out], prob_list[out]
     else: 
         #print(f"class: {classes[out]}prob: {str(prob_list[out])}")

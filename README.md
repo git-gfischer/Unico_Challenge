@@ -14,10 +14,17 @@ pip3 install -r requirements.txt
 ```
 
 # Preprocessing dataset
-Before training the model the dataset must be organized in training, validation and test data. For some reason there are some black images in the dataset. In order to prevent those image to disturb the training process, a black image filter was implemented. Run the following command to organize and filter the black images from the dataset. The already organized training and test data can be found at ```dogs_dataset/train_organized```.
+Before training the model the dataset must be organized in training, validation and test data. For some reason there are some black images in the dataset. In order to prevent those image to disturb the training process, a black image filter was implemented. Run the following command to organize and filter the black images from the dataset.
 ```
 cd Dataset_tools
 python3 Organize.py --dataset [PATH] --black_img_filter
+```
+
+# Downloading preprocessed dataset
+To download the already preprocessed dataset run the following commad at the root of this repository. this might take a little while to finish.
+
+```
+    gdown --folder https://drive.google.com/drive/u/0/folders/1WEAnqEMmITJAkR4kX3j9zWqcdfpr8na_
 ```
 
 # Start Web Application

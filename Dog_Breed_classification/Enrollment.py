@@ -12,12 +12,12 @@ import random
 from sklearn.model_selection import train_test_split
 from utils.utils import update_labels_file
 
-def web_enrollment(path,database):
+def web_enrollment(path,database,labels):
     #check if there is more than one new label
     paths = path.split()
-    for path in paths: web_enroll_new_label(path,database)
+    for path in paths: web_enroll_new_label(path,database,labels)
 #================================================
-def web_enroll_new_label(path, database):
+def web_enroll_new_label(path, database,labels):
     #get new label name from folder`s name
     new_label = os.path.basename(path)
 
@@ -30,7 +30,7 @@ def web_enroll_new_label(path, database):
         #create new label folder
         #new_label_path = os.path.join(args.database,args.new_label)
         new_label_train =os.path.join(database,'train',new_label)
-        new_label_val = os.path.join(database,'test',new_label)
+        new_label_val = os.path.join(database,'val',new_label)
         os.mkdir(new_label_train)
         os.mkdir(new_label_val)
 
@@ -51,7 +51,7 @@ def web_enroll_new_label(path, database):
             shutil.copy(old_val_path,new_val_path)
         
         #update labels file
-        update_labels_file(database)
+        update_labels_file(database,labels)
         return "new label enrolled"
 
    # print("done")
@@ -81,7 +81,7 @@ def main(): # DEBUGGING
         #create new label folder
         #new_label_path = os.path.join(args.database,args.new_label)
         new_label_train =os.path.join(args.database,'train',new_label)
-        new_label_val = os.path.join(args.database,'test',new_label)
+        new_label_val = os.path.join(args.database,'val',new_label)
         os.mkdir(new_label_train)
         os.mkdir(new_label_val)
 
