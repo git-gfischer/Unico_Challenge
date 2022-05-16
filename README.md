@@ -4,7 +4,7 @@
 
 Deep Learning application to recognize dogs breeds. <br/>
 
-![plot](./Repo_images/front_img.jpeg | width=224)
+<img src="./Repo_images/front_img.jpeg" width="48">
 
 # Depedencies
 ```
