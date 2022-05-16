@@ -24,7 +24,7 @@ python3 Organize.py --dataset [PATH] --black_img_filter
 ```
 
 # Downloading preprocessed dataset
-To download the already preprocessed dataset at: https://drive.google.com/drive/u/0/folders/1WEAnqEMmITJAkR4kX3j9zWqcdfpr8na_ .
+To download the already preprocessed dataset at: https://drive.google.com/drive/folders/1WEAnqEMmITJAkR4kX3j9zWqcdfpr8na_?usp=sharing.
 
 
 # Start Web Application
